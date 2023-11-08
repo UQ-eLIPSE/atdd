@@ -26,12 +26,12 @@ describe("Minimap Test", () => {
         // Retrieve the collection 2 of elements with .linkNodeNames
         cy.get(".linkButton").should("exist").click();
         cy.wait(1000);
-        cy.get('[data-cy="link-node-names"]')
+        cy.get(".linkNodeNames")
           .should("exist")
           .then(($collection2) => {
             // Map through each element in collection2 and get their inner HTML content
             const htmlCollection2 = $collection2
-              .map((index, html) => html.innerHTML)
+              .map((index, html) => html.textContent ?? "")
               .get();
 
             // Wait for any asynchronous actions to complete before comparing the collections
@@ -44,26 +44,16 @@ describe("Minimap Test", () => {
             // Comparing the length of both collections
             expect(
               htmlCollection1.length,
-              "Both collections should have the same number of elements"
+              "Both collections should have the same number of elements",
             ).to.equal(htmlCollection2.length);
 
             // Continue with comparison content
             htmlCollection1.forEach((html, index) => {
               expect(html.trim()).to.equal(
                 htmlCollection2[index].trim(),
-                `HTML content of element ${index} should match`
+                `HTML content of element ${index} should match`,
               );
             });
-
-            // Compare the length of both collections
-            // expect(
-            //   $collection1.length,
-            //   "number of visible .hotspot-tooltip elements"
-            // ).to.equal(1);
-            // expect(
-            //   $collection1.length,
-            //   "number of visible .hotspot-tooltip elements"
-            // ).to.not.equal($collection2.length);
           });
       });
   });
