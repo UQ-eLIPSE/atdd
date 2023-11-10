@@ -131,3 +131,4 @@ dist
 yarn.lock
 
 cypress/screeshots/*.*
+.env
