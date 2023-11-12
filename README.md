@@ -8,4 +8,4 @@ _Quick Start_
    `export CYPRESS_USERNAME=your-user-name`
    `export CYPRESS_PASSWORD=your-password`
    then continue with step 4.
-4. start tests: `yarn cypress:run`
+4. start tests: `yarn cypress:run` or `yarn cypress run --headed --no-exit`

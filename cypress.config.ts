@@ -15,6 +15,7 @@ export default defineConfig({
     baseUrl: "https://prism-020.uqcloud.net", // Adjust to your application's URL
     //additional configurations...
     supportFile: false,
+    screenshotOnRunFailure: false,
   },
   // Add any plugins you are using
   component: {

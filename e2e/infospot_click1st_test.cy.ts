@@ -2,10 +2,10 @@ describe("Test case: InforLinknode in Expanded Left Top Bar should match linkNod
   it("should compare elements with .hotspot-tooltip and .linkNodeNames", () => {
     // Visit the page where your hotspots are located
     cy.visit("/site", {
-      auth: {
-        username: Cypress.env("username"),
-        password: Cypress.env("password"),
-      },
+      // auth: {
+      //   username: Cypress.env("username"),
+      //   password: Cypress.env("password"),
+      // },
     });
 
     // First, click on the first visible hotspot to switch scene

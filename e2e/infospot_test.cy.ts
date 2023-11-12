@@ -14,10 +14,10 @@ describe("Test case: InforLinknode in Expanded Left Top Bar should match linkNod
   it("should compare elements with .hotspot-tooltip and .linkNodeNames", () => {
     // Visit the page where your divs are located
     cy.visit("/", {
-      auth: {
-        username: Cypress.env("username"),
-        password: Cypress.env("password"),
-      },
+      // auth: {
+      //   username: Cypress.env("username"),
+      //   password: Cypress.env("password"),
+      // },
     });
 
     cy.get('[data-cy="sb-site"]').click();

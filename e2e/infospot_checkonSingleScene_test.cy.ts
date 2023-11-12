@@ -8,14 +8,14 @@ describe("Test case: Given one scene, infobar should contain same information wi
   it("should compare elements with .hotspot-tooltip and .linkNodeNames", () => {
     // Visit the page where your hotspots are located
     cy.visit("/site", {
-      auth: {
-        username: Cypress.env("username"),
-        password: Cypress.env("password"),
-      },
+      // auth: {
+      //   username: Cypress.env("username"),
+      //   password: Cypress.env("password"),
+      // },
     });
 
     // First, give a scene name, change the ID name if test different scene
-    cy.get("#30-img_4045-panorama").click();
+    cy.get("#29-img_4039-panorama").click();
 
     // Second, get all hotspot visible on new scene
     cy.get(".hotspot.link-hotspot")
@@ -33,7 +33,6 @@ describe("Test case: Given one scene, infobar should contain same information wi
           .get();
         // Retrieve the collection 2 of elements with .linkNodeNames
         cy.get(".linkButton").should("exist").click();
-        cy.wait(1000);
         cy.get(".linkNodeNames")
           .should("exist")
           .then(($collection2) => {
@@ -41,9 +40,6 @@ describe("Test case: Given one scene, infobar should contain same information wi
             const htmlCollection2 = $collection2
               .map((index, html) => html.textContent ?? "")
               .get();
-
-            // Wait for any asynchronous actions to complete before comparing the collections
-            cy.wait(500); // Adjust the time according to your application's needs
 
             // Log the HTML content for the first element in each collection for debugging
             cy.log(`Collection1 Element 0 HTML: ${htmlCollection1[0]}`);

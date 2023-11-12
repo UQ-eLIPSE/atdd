@@ -2,19 +2,19 @@ describe("Verify that when a user clicks all nodes on the minimap, application c
   it("clicks each mininode element and then compares", () => {
     // Visit the page where the elements exist
     cy.visit("/site", {
-      auth: {
-        username: Cypress.env("username"),
-        password: Cypress.env("password"),
-      },
+      // auth: {
+      //   username: Cypress.env("username"),
+      //   password: Cypress.env("password"),
+      // },
     });
 
     // Get all elements with the class '.someclass'
     cy.get("[class^='_minimap_node']").then(($elements) => {
       // Use .map() to retrieve the 'data-cy' or any unique identifier for each element.
-      //   const elementIdentifiers = $elements.map((index, el) => Cypress.$(el).attr('data-cy')).get();
-      //   //   // Iterate over each element
+      // const elementIdentifiers = $elements.map((index, el) => Cypress.$(el).attr('data-cy')).get();
+      //  Iterate over each element
       // Use .slice() to get only the first 5 elements
-      const firstFiveElements = $elements.slice(0, 4);
+      const firstFiveElements = $elements.slice(0, 5);
       firstFiveElements.each((index, element) => {
         // Log the HTML of the element
         cy.wrap(element)
@@ -32,10 +32,7 @@ describe("Verify that when a user clicks all nodes on the minimap, application c
         cy.wrap(element)
           .click({ force: true })
           .then(() => {
-            cy.wait(2000);
             performChecks();
-            // cy.wait(2000);
-            // cy.go('back');
           });
       });
     });
@@ -73,7 +70,6 @@ describe("Verify that when a user clicks all nodes on the minimap, application c
               }
             });
 
-          cy.wait(1000);
           cy.get(".linkNodeNames")
             .should("exist")
             .then(($collection2) => {
@@ -81,13 +77,9 @@ describe("Verify that when a user clicks all nodes on the minimap, application c
               const htmlCollection2 = $collection2
                 .map((index, html) => html.textContent ?? "")
                 .get();
-
-              // Wait for any asynchronous actions to complete before comparing the collections
-              cy.wait(500); // Adjust the time according to your application's needs
-
               // Log the HTML content for the first element in each collection for debugging
-              cy.log(`Collection1 Element 0 HTML: ${htmlCollection1[0]}`);
-              cy.log(`Collection2 Element 0 HTML: ${htmlCollection2[0]}`);
+              cy.log(`Collection1 Element 0 HTML: ${htmlCollection1}`);
+              cy.log(`Collection2 Element 0 HTML: ${htmlCollection2}`);
 
               // Comparing the length of both collections
               expect(
